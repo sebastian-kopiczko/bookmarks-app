@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <style>
+        .app {
+            margin-top: 2em;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="app">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <div class="panel">
+                        <div class="panel-heading">Your bookmarks</div>
+                            <form id="app-form" action="">
+                            <div class="panel-block">
+                                <p class="control">
+                                    <input type="text" class="input" placeholder="e.g. Github">
+                                </p>
+                            </div>
+                            <div class="panel-block">
+                                <p class="control">
+                                    <input type="text" class="input" placeholder="e.g. https://github.com/">
+                                </p>
+                            </div>
+                            <div class="panel-block">
+                                <input class="button is-link is-outlined" type="submit" value="Submit">
+                            </div>
+                        </form>
+                    <div class="panel-block">
+                        <a class="panel-block">
+                            <span class="panel-icon">
+                                <i class="fas fa-book" aria-hidden="true"></i>
+                            </span>
+                            bookmark
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</body>
+
+</html>
