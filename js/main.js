@@ -4,6 +4,10 @@ function saveBookmark(e) {
     var bookmarkName = document.getElementById('bookmark-name').value;
     var bookmarkUrl = document.getElementById('bookmark-url').value;
 
+    if(!validateForm(bookmarkName, bookmarkUrl)){
+        return false;
+    }
+
     var bookmark = {
         name: bookmarkName,
         url: bookmarkUrl
@@ -19,7 +23,7 @@ function saveBookmark(e) {
         bookmarks.push(bookmark);
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     }
-
+    document.getElementById('app-form').reset();
     fetchBookmarks();
     e.preventDefault();
 }
@@ -53,3 +57,18 @@ function fetchBookmarks() {
     }
 }
     
+function validateForm(bookmarkName, bookmarkUrl){
+    if(!bookmarkName || !bookmarkUrl){
+        alert('Fill inputs')
+        return false;
+    }
+    var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    var regex = new RegExp(expression);
+
+    if(!bookmarkUrl.match(regex)){
+        alert('Use a valid URL');
+        return false;
+    }
+
+    return true;
+}
