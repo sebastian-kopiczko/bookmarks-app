@@ -1,9 +1,9 @@
 document.getElementById('app-form').addEventListener('submit', saveBookmark);
 
 function saveBookmark(e) {
-    e.preventDefault();
     var bookmarkName = document.getElementById('bookmark-name').value;
     var bookmarkUrl = document.getElementById('bookmark-url').value;
+
     var bookmark = {
         name: bookmarkName,
         url: bookmarkUrl
@@ -19,4 +19,37 @@ function saveBookmark(e) {
         bookmarks.push(bookmark);
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     }
+
+    fetchBookmarks();
+    e.preventDefault();
 }
+
+function deleteBookmark(url){
+    var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    for(var i = 0; i<bookmarks.length; i++){
+        if(bookmarks[i].url == url){
+            bookmarks.splice(i, 1);
+        }
+    }
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    fetchBookmarks();
+}
+
+//fetach bookmarks 
+function fetchBookmarks() {
+    // get bookmarks from localstorage
+    var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    var bookmarksResult = document.getElementById('bookmarks-result');
+
+    bookmarksResult.innerHTML = '';
+    for (var i = 0; i < bookmarks.length; i++) {
+        var name = bookmarks[i].name;
+        var url = bookmarks[i].url;
+        bookmarksResult.innerHTML +=
+            '<div class="panel-block">' + 
+            '<h3><span class="panel-icon"><i class="fas fa-book" aria-hidden="true"></i></span>' + name + '</h3>' +  
+            '<a href="' + url + '" class="button is-link">Visit</a>' + 
+            '<button onclick="deleteBookmark(\''+ url + '\')" class="button is-danger">delete</button></div>';
+    }
+}
+    
